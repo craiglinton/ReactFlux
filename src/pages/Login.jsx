@@ -29,6 +29,14 @@ import {
 import { startSession } from "@/utils/session"
 import "./Login.css"
 
+// Set at build time for a dedicated installation; relative paths use this host.
+const configuredServer = import.meta.env.VITE_MINIFLUX_SERVER
+  ? new URL(import.meta.env.VITE_MINIFLUX_SERVER, globalThis.location.origin).href.replace(
+      /\/$/,
+      "",
+    )
+  : ""
+
 const getSafeRequestErrorDetails = (error) => ({
   message: error instanceof Error ? error.message : String(error),
   status: error?.status ?? error?.response?.status,
@@ -72,7 +80,7 @@ const Login = () => {
 
   const [searchParams] = useSearchParams()
   const [authMethod, setAuthMethod] = useState(() =>
-    Object.fromEntries(searchParams).username ? "user" : "token",
+    configuredServer || Object.fromEntries(searchParams).username ? "user" : "token",
   )
   /* token or user */
   const location = useLocation()
@@ -173,6 +181,9 @@ const Login = () => {
   }, [])
 
   useEffect(() => {
+    if (configuredServer) {
+      return
+    }
     const url = new URL(globalThis.location.href)
     const { server, token, username, password } = Object.fromEntries(url.searchParams)
     if (server) {
@@ -213,30 +224,35 @@ const Login = () => {
               onSubmit={async () => {
                 if (validateAndFormatFormFields(loginForm)) {
                   history.replaceState(history.state, "", "/login")
-                  await handleLogin(loginForm.getFieldsValue())
+                  await handleLogin({
+                    ...loginForm.getFieldsValue(),
+                    ...(configuredServer ? { server: configuredServer } : {}),
+                  })
                 } else {
                   Message.error(polyglot.t("login.submit_error"))
                 }
               }}
             >
-              <Form.Item
-                field="server"
-                label={polyglot.t("login.server_label")}
-                rules={[{ required: true }]}
-                onKeyDown={(event) => {
-                  handleEnterKeyToSubmit(event, loginForm)
-                }}
-              >
-                <Input
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  disabled={loading}
-                  inputMode="url"
-                  placeholder={polyglot.t("login.server_placeholder")}
-                  prefix={<IconHome aria-hidden="true" />}
-                  spellCheck={false}
-                />
-              </Form.Item>
+              {!configuredServer && (
+                <Form.Item
+                  field="server"
+                  label={polyglot.t("login.server_label")}
+                  rules={[{ required: true }]}
+                  onKeyDown={(event) => {
+                    handleEnterKeyToSubmit(event, loginForm)
+                  }}
+                >
+                  <Input
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    disabled={loading}
+                    inputMode="url"
+                    placeholder={polyglot.t("login.server_placeholder")}
+                    prefix={<IconHome aria-hidden="true" />}
+                    spellCheck={false}
+                  />
+                </Form.Item>
+              )}
               {authMethod === "token" && (
                 <Form.Item
                   field="token"

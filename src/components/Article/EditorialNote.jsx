@@ -1,4 +1,4 @@
-import { Button, Input, Select } from "@arco-design/web-react"
+import { Button, Input } from "@arco-design/web-react"
 import { useStore } from "@nanostores/react"
 import { useEffect, useState } from "react"
 
@@ -6,11 +6,9 @@ import { authState } from "@/store/authState"
 import "./EditorialNote.css"
 
 const endpoint = import.meta.env.VITE_EDITORIAL_API
-const statuses = [
-  { value: "review", label: "Review" },
+const actions = [
   { value: "add_to_wiki", label: "Add to wiki" },
-  { value: "check_case", label: "Check case coverage" },
-  { value: "done", label: "Done" },
+  { value: "check_case", label: "Check coverage" },
 ]
 
 const request = async (entryId, auth, data) => {
@@ -33,11 +31,10 @@ const request = async (entryId, auth, data) => {
 function NoteEditor({ entryId, auth }) {
   const [saved, setSaved] = useState(null)
   const [note, setNote] = useState("")
-  const [status, setStatus] = useState("review")
   const [error, setError] = useState("")
-  const [busy, setBusy] = useState(false)
+  const [busy, setBusy] = useState("")
   const [reload, setReload] = useState(0)
-  const dirty = saved && (note !== saved.note || status !== saved.status)
+  const dirty = saved && note !== saved.note
 
   useEffect(() => {
     let cancelled = false
@@ -48,7 +45,6 @@ function NoteEditor({ entryId, auth }) {
         }
         setSaved(result)
         setNote(result.note)
-        setStatus(result.status)
         setError("")
         return null
       })
@@ -74,69 +70,96 @@ function NoteEditor({ entryId, auth }) {
     return () => window.removeEventListener("beforeunload", warn)
   }, [dirty])
 
-  const save = async () => {
-    setBusy(true)
+  const save = async (action) => {
+    setBusy(action)
     setError("")
     try {
-      const result = await request(entryId, auth, { note, status, version: saved.version })
+      const result = await request(entryId, auth, {
+        note: action === "note" ? note : saved.note,
+        status: action === "note" ? saved.status : action,
+        version: saved.version,
+      })
       setSaved(result)
     } catch (error_) {
       setError(error_.message)
     } finally {
-      setBusy(false)
+      setBusy("")
     }
   }
 
   return (
-    <details className="editorial-note">
-      <summary>
-        Editorial note
-        {saved && (saved.note || saved.status !== "review") && (
-          <span className="editorial-note-badge">
-            {statuses.find((item) => item.value === saved.status)?.label}
-          </span>
-        )}
-      </summary>
-      <p className="editorial-note-help">
-        Leave instructions for wiki review. Save before moving to another article.
-      </p>
-      {saved && (
-        <>
-          <label htmlFor={`editorial-text-${entryId}`}>Note</label>
-          <Input.TextArea
-            autoSize={{ minRows: 3, maxRows: 8 }}
-            disabled={busy}
-            id={`editorial-text-${entryId}`}
-            maxLength={10_000}
-            placeholder="For example: Check whether this case has an entry."
-            value={note}
-            onChange={setNote}
-          />
-          <div className="editorial-note-actions">
-            <Select
-              aria-label="Review status"
-              disabled={busy}
-              options={statuses}
-              value={status}
-              onChange={setStatus}
+    <section aria-label="Editorial actions" className="editorial-note">
+      <div className="editorial-quick-actions">
+        {actions.map((action) => (
+          <Button
+            key={action.value}
+            aria-pressed={saved?.status === action.value}
+            disabled={!saved || Boolean(busy)}
+            loading={busy === action.value}
+            type={saved?.status === action.value ? "primary" : "secondary"}
+            onClick={() => save(action.value)}
+          >
+            {action.label}
+          </Button>
+        ))}
+        <span aria-live="polite">
+          {busy && busy !== "note"
+            ? "Saving…"
+            : saved?.status === "done"
+              ? "Done"
+              : actions.some((action) => action.value === saved?.status)
+                ? "Saved"
+                : ""}
+        </span>
+      </div>
+      <details>
+        <summary>
+          Note
+          {(dirty || saved?.note) && (
+            <span className="editorial-note-badge">{dirty ? "Unsaved changes" : "Saved note"}</span>
+          )}
+        </summary>
+        <p className="editorial-note-help">
+          Add instructions for wiki review. Save before moving to another article.
+        </p>
+        {saved && (
+          <>
+            <label htmlFor={`editorial-text-${entryId}`}>Note</label>
+            <Input.TextArea
+              autoSize={{ minRows: 3, maxRows: 8 }}
+              disabled={Boolean(busy)}
+              id={`editorial-text-${entryId}`}
+              maxLength={10_000}
+              placeholder="Add a more detailed instruction…"
+              value={note}
+              onChange={setNote}
             />
-            <Button disabled={!dirty} loading={busy} type="primary" onClick={save}>
-              Save note
-            </Button>
-            <span aria-live="polite">{busy ? "Saving…" : dirty ? "Unsaved changes" : "Saved"}</span>
-          </div>
-        </>
-      )}
-      {!saved && !error && <p>Loading note…</p>}
+            <div className="editorial-note-actions">
+              <Button
+                disabled={!dirty || Boolean(busy)}
+                loading={busy === "note"}
+                type="primary"
+                onClick={() => save("note")}
+              >
+                Save note
+              </Button>
+              <span aria-live="polite">
+                {busy === "note" ? "Saving…" : dirty ? "Unsaved changes" : "Saved"}
+              </span>
+            </div>
+          </>
+        )}
+      </details>
+      {!saved && !error && <p>Loading editorial actions…</p>}
       {error && (
         <div role="alert">
           <p>{error}</p>
-          <Button disabled={busy} onClick={() => setReload((value) => value + 1)}>
+          <Button disabled={Boolean(busy)} onClick={() => setReload((value) => value + 1)}>
             Reload saved note
           </Button>
         </div>
       )}
-    </details>
+    </section>
   )
 }
 

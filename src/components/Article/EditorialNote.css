@@ -26,6 +26,7 @@
   display: block;
   margin-bottom: 6px;
 }
+.editorial-quick-actions,
 .editorial-note-actions {
   display: flex;
   align-items: center;
@@ -33,9 +34,11 @@
   flex-wrap: wrap;
   margin-top: 12px;
 }
-.editorial-note-actions .arco-select {
-  width: 190px;
+.editorial-quick-actions {
+  margin-top: 0;
+  margin-bottom: 12px;
 }
+.editorial-quick-actions span[aria-live],
 .editorial-note-actions span[aria-live] {
   color: var(--color-text-3);
   font-size: 12px;
@@ -46,8 +49,5 @@
 @media (max-width: 600px) {
   .editorial-note {
     margin: 0 12px 20px;
-  }
-  .editorial-note-actions .arco-select {
-    width: 100%;
   }
 }

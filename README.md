@@ -173,3 +173,9 @@ Made with [contrib.rocks](https://contrib.rocks).
     <img alt="ReactFlux star history chart" src="https://star-history.dera.page/svg?repos=electh/reactflux" />
   </picture>
 </a>
+
+### Dedicated reader deployment
+
+Set `VITE_MINIFLUX_SERVER=/miniflux` at build time to supply the server automatically, hide its address field, and default to username/password login. Relative paths resolve against the reader origin. When this setting is present, URL query parameters cannot override the server or trigger automatic login. API-token login remains available. Omit it to retain the general-purpose server selector.
+
+The private editorial panel uses `VITE_EDITORIAL_API=/editorial`. **Add to wiki** and **Check coverage** save the selected instruction immediately; **Note** expands the text editor and **Save note**. Quick actions preserve saved notes and leave drafts unsaved. The selected action is highlighted after successful persistence.
