@@ -18,6 +18,7 @@ import { useNavigate } from "react-router"
 
 import ArticleEnclosures from "./ArticleEnclosures"
 import DeferredCodeBlock from "./DeferredCodeBlock"
+import EditorialNote from "./EditorialNote"
 import EnclosurePlayer from "./EnclosurePlayer"
 import ImageLinkTag from "./ImageLinkTag"
 import ImageOverlayButton from "./ImageOverlayButton"
@@ -636,6 +637,7 @@ const ArticleDetail = forwardRef((_, ref) => {
             </Typography.Text>
             <Divider />
           </div>
+          <EditorialNote entryId={activeContent.id} />
           <div
             key={activeContent.id}
             aria-busy={isArticleBodyPending || undefined}
