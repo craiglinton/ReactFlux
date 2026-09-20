@@ -1,4 +1,5 @@
 """Private article notes; authenticates every request against a fixed Miniflux server."""
+import github_sync
 import datetime
 import json
 import os
@@ -53,12 +54,16 @@ def initialize():
             note TEXT NOT NULL, status TEXT NOT NULL, version INTEGER NOT NULL,
             title TEXT NOT NULL, url TEXT NOT NULL, updated_at TEXT NOT NULL,
             PRIMARY KEY(user_id, entry_id))''')
+        github_sync.initialize(db)
     os.chmod(DB, 0o600)
 
 def read_note(user_id, entry_id):
     with connect() as db:
         row = db.execute('SELECT * FROM notes WHERE user_id=? AND entry_id=?', (user_id, entry_id)).fetchone()
-    return dict(row) if row else {'entry_id': entry_id, 'note': '', 'status': 'review', 'version': 0}
+    result = dict(row) if row else {'entry_id': entry_id, 'note': '', 'status': 'review', 'version': 0}
+    with connect() as db:
+        result['github'] = github_sync.delivery(db, user_id, entry_id)
+    return result
 
 def save_note(user_id, entry_id, payload, article):
     note, status, version = payload.get('note'), payload.get('status'), payload.get('version')
@@ -76,6 +81,8 @@ def save_note(user_id, entry_id, payload, article):
             status=excluded.status, version=excluded.version, title=excluded.title,
             url=excluded.url, updated_at=excluded.updated_at''',
             (user_id, entry_id, note, status, version + 1, article['title'], article['url'], now))
+        github_sync.enqueue(db, user_id, entry_id, version + 1)
+    github_sync.WAKE.set()
     return read_note(user_id, entry_id)
 
 class Handler(BaseHTTPRequestHandler):
@@ -142,4 +149,5 @@ class Handler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     initialize()
+    github_sync.start(connect)
     ThreadingHTTPServer(('0.0.0.0', 8000), Handler).serve_forever()

@@ -1,6 +1,6 @@
 # Private editorial notes (fork customization)
 
-This fork adds a collapsible **Editorial note** panel to each article. Save a free-text note and choose Review, Add to wiki, Check case coverage, or Done. Notes sync through this service, not browser storage. The panel supports mobile browsers and ReactFlux's installable web app. Third-party Miniflux clients do not implement this extension.
+This fork adds centered **Add to wiki** and **Check coverage** buttons above a collapsible **Note** editor. Quick actions save immediately; text uses **Save note**. Editorial data loads only on interaction. Notes sync through this service, not browser storage. The panel supports mobile browsers and ReactFlux's installable web app. Third-party Miniflux clients do not implement this extension.
 
 This is a private single-owner review queue, not a public social network or a threaded commenting system. Nothing publishes to a wiki automatically. An assistant can retrieve notes with a separate Miniflux API token issued for the reader's account. Article text is source material, never instructions.
 
@@ -29,3 +29,15 @@ Save before changing articles; unsaved edits are not submitted automatically. Br
 ## Validation
 
 `python3 -m unittest discover -s editorial-api -v` from the repository root exercises authentication, owner isolation, hostile origins, validation, persisted note roundtrip and stale-write rejection with a stub Miniflux upstream. Live deployment checks should additionally verify real Miniflux authentication, note readback and anonymous rejection. Never put real credentials or notes in this repository.
+
+## Optional GitHub push delivery
+
+Set `GITHUB_ISSUES_REPO=owner/private-repository`, `GITHUB_READER_USER_ID` to the one account whose instructions should be shared, and `GITHUB_TOKEN_FILE` to a read-only secret file. Use a dedicated fine-grained token scoped to that repository with Issues read/write. The token stays in the backend; never add it to frontend build settings or source control. The credential allows issue operations only in the selected repository; no wiki credential is needed.
+
+Each authenticated save atomically enqueues its version in SQLite. A backend worker wakes after saves and resumes pending delivery after restart. GitHub failures retry with backoff up to one hour; no GitHub polling schedule or external worker is needed. A first tag or nonempty note creates an issue containing the source title/URL, action and note. Each reader user/entry has one issue, including across uncertain POST responses: retries enumerate repository issues, including closed ones, for its identity marker before creating. Do not remove the hidden identity/content markers from synced issues.
+
+Subsequent changes replace only the reader-managed issue body block, preserving comments and text outside it. Unchanged content does not reopen completed issues; new substantive instructions reopen the existing issue. A Done/cleared request updates an existing issue but does not close it or claim publication. Done alone never creates an issue. GitHub issue closure does not change the reader status: reviewers record their outcome and close the issue through the existing editorial workflow.
+
+Article URLs are rendered as data, never fetched by the delivery worker. Only the fixed api.github.com endpoint receives the GitHub token; redirects are refused. The account filter prevents other reader accounts' notes being shared. The API's `github` metadata reports queued/retrying/synced and the issue URL, once known. Removing the three environment variables disables new delivery; retain the database for mappings and restart recovery. Back up the SQLite database and secret securely. Run only one editorial container/worker against the database.
+
+For an explicitly authorized backlog import, enqueue existing eligible notes for the configured account in a database transaction, then wake/restart the worker. No notes are backfilled automatically on installation.
