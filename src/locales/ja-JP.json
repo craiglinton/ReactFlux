@@ -373,6 +373,10 @@
     "settings_export_error": "設定バックアップのエクスポートに失敗しました"
   },
   "appearance": {
+    "interface_theme_label": "テーマ",
+    "interface_theme_description": "モダンはすっきりした閲覧画面です。いつでもクラシックに戻せます。ブラウザーごとに保存され、ほかの設定は維持されます。",
+    "interface_theme_classic": "クラシック",
+    "interface_theme_modern": "モダン",
     "section_theme_interface": "テーマとインターフェース",
     "section_article_cards": "記事カード",
     "section_article_view": "記事ビュー",

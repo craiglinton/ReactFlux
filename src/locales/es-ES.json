@@ -373,6 +373,10 @@
     "settings_export_error": "No se pudo exportar la copia de seguridad de ajustes"
   },
   "appearance": {
+    "interface_theme_label": "Tema",
+    "interface_theme_description": "Elija Moderno para una lectura más clara. Vuelva a Clásico en cualquier momento. Se guarda por navegador y conserva las demás preferencias.",
+    "interface_theme_classic": "Clásico",
+    "interface_theme_modern": "Moderno",
     "section_theme_interface": "Tema e interfaz",
     "section_article_cards": "Tarjetas de artículos",
     "section_article_view": "Vista del artículo",

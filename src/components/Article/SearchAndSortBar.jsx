@@ -111,6 +111,7 @@ const ActiveButton = ({ active, expanded, icon, tooltip, onClick }) => (
       aria-expanded={expanded}
       aria-haspopup="dialog"
       aria-label={tooltip}
+      className="search-icon-trigger"
       icon={icon}
       shape="circle"
       size="small"
@@ -308,6 +309,13 @@ const SearchAndSortBar = ({ fullWidth = false }) => {
           />
         </CustomTooltip>
       </div>
+      <Button
+        className="modern-search-button"
+        icon={<IconSearch aria-hidden="true" />}
+        onClick={openSearchModal}
+      >
+        {searchLabel}
+      </Button>
       <SearchModal
         value={modalInputValue}
         visible={searchModalVisible}

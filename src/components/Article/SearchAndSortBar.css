@@ -8,6 +8,10 @@
   padding: 8px 0;
 }
 
+.modern-search-button {
+  display: none;
+}
+
 .search-and-sort-bar .page-info {
   display: flex;
   align-items: center;

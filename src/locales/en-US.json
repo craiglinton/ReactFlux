@@ -373,6 +373,10 @@
     "settings_export_error": "Failed to export settings backup"
   },
   "appearance": {
+    "interface_theme_label": "Theme",
+    "interface_theme_description": "Choose Modern for a cleaner reading desk. Switch back to Classic at any time. Saved separately on each browser; other preferences are preserved.",
+    "interface_theme_classic": "Classic",
+    "interface_theme_modern": "Modern",
     "section_theme_interface": "Theme and interface",
     "section_article_cards": "Article cards",
     "section_article_view": "Article view",

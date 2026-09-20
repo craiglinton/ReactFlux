@@ -373,6 +373,10 @@
     "settings_export_error": "Échec de l’exportation de la sauvegarde des paramètres"
   },
   "appearance": {
+    "interface_theme_label": "Thème",
+    "interface_theme_description": "Choisissez Moderne pour une lecture épurée. Revenez à Classique à tout moment. Ce choix est enregistré par navigateur et conserve vos autres préférences.",
+    "interface_theme_classic": "Classique",
+    "interface_theme_modern": "Moderne",
     "section_theme_interface": "Thème et interface",
     "section_article_cards": "Cartes d’articles",
     "section_article_view": "Vue de l’article",

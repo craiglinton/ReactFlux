@@ -5,6 +5,9 @@
   font-size: 14px;
   line-height: 1.5;
 }
+.editorial-modern-heading {
+  display: none;
+}
 .editorial-note {
   padding: 12px 16px;
   border: 1px solid var(--color-border-2);

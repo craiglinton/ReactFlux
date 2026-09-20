@@ -1,0 +1,335 @@
+/* Optional presentation only. Removing data-interface-theme restores Classic. */
+body[data-interface-theme="modern"] {
+  --modern-paper: #ffffff;
+  --modern-rail: #f4f6f9;
+  --modern-line: #e2e8f0;
+  --modern-ink: #202c3d;
+  --modern-muted: #647287;
+  --color-bg-1: var(--modern-paper);
+  --color-bg-2: var(--modern-rail);
+  --color-bg-3: var(--modern-paper);
+  --color-text-1: var(--modern-ink);
+  --color-text-2: #435168;
+  --color-text-3: var(--modern-muted);
+  --color-border-2: var(--modern-line);
+  --border-radius-medium: 8px;
+  --shadow: none;
+}
+
+body[data-interface-theme="modern"][arco-theme="dark"] {
+  --modern-paper: #15191f;
+  --modern-rail: #11151a;
+  --modern-line: #2a323f;
+  --modern-ink: #e1e7f0;
+  --modern-muted: #9ba8bb;
+  --color-text-2: #c2ccda;
+}
+
+body[data-interface-theme="modern"] .sidebar,
+body[data-interface-theme="modern"] .sidebar-expanded .menu-header,
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-light,
+body[data-interface-theme="modern"]
+  .sidebar-container
+  .arco-menu-light
+  :is(.arco-menu-item, .arco-menu-group-title, .arco-menu-pop-header, .arco-menu-inline-header) {
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .menu-header {
+  min-height: 62px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .sidebar .desktop-sidebar-toggle.arco-btn {
+  top: 16px;
+}
+
+body[data-interface-theme="modern"] .home-brand .avatar {
+  border-radius: 9px;
+  color: rgb(var(--primary-6));
+  background: var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .section-title {
+  margin-block: 22px 10px;
+  color: var(--modern-muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-selected,
+body[data-interface-theme="modern"] .sidebar-container .submenu-active {
+  background: var(--color-primary-light-1) !important;
+}
+
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-item {
+  border-radius: 7px;
+}
+
+body[data-interface-theme="modern"] .entry-col {
+  background: var(--modern-paper);
+  border-inline-end: 1px solid var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar {
+  box-sizing: border-box;
+  min-height: 63px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--modern-line);
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar .title-container .arco-typography {
+  color: var(--modern-ink);
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar .count-label {
+  color: var(--modern-muted);
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .entry-list-layout-column {
+  box-sizing: border-box;
+  padding: 0;
+  width: 100%;
+}
+
+body[data-interface-theme="modern"] .entry-list-layout-column .article-list-divider {
+  margin: 0;
+  border-color: var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .card-wrapper {
+  margin-inline: 0;
+  padding: 20px;
+  border-inline-start: 3px solid transparent;
+  border-radius: 0;
+}
+
+body[data-interface-theme="modern"] .article-entry.selected {
+  border-inline-start-color: rgb(var(--primary-6));
+  background: var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .article-entry:hover:not(.selected) {
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .card-title {
+  margin-block: 7px;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+body[data-interface-theme="modern"] .card-source-title,
+body[data-interface-theme="modern"] .card-time-wrapper,
+body[data-interface-theme="modern"] .card-author {
+  color: var(--modern-muted);
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .card-preview {
+  color: var(--modern-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+body[data-interface-theme="modern"] .card-image-wide,
+body[data-interface-theme="modern"] .card-image-mini {
+  box-shadow: none;
+}
+
+body[data-interface-theme="modern"] .article-container,
+body[data-interface-theme="modern"] .content-empty {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body[data-interface-theme="modern"] .action-buttons:not(.mobile) {
+  box-sizing: border-box;
+  min-height: 63px;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .article-content {
+  padding: 0 28px;
+}
+
+body[data-interface-theme="modern"] .article-header {
+  padding-top: 28px;
+}
+
+body[data-interface-theme="modern"] .article-title.arco-typography {
+  margin-bottom: 18px;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+}
+
+body[data-interface-theme="modern"] .article-title a {
+  margin-inline: 0;
+  font-weight: 600;
+}
+
+body[data-interface-theme="modern"] .article-meta .arco-typography,
+body[data-interface-theme="modern"] .article-date {
+  color: var(--modern-muted);
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .article-header .arco-divider {
+  border: 0;
+  margin: 20px 0;
+}
+
+body[data-interface-theme="modern"] .editorial-controls {
+  box-sizing: border-box;
+  margin: 0 auto 24px;
+  padding: 16px;
+  border: 1px solid var(--modern-line);
+  border-radius: 10px;
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .editorial-modern-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .editorial-modern-heading strong {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+body[data-interface-theme="modern"] .editorial-modern-heading span {
+  color: var(--modern-muted);
+}
+
+body[data-interface-theme="modern"] .editorial-quick-actions {
+  justify-content: flex-start;
+}
+
+body[data-interface-theme="modern"] .editorial-quick-actions .arco-btn-secondary {
+  border: 1px solid var(--modern-line);
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .editorial-note {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+body[data-interface-theme="modern"] .editorial-note summary {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+body[data-interface-theme="modern"] .editorial-note .arco-textarea-wrapper {
+  border: 1px solid var(--modern-line);
+  border-radius: 7px;
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .editorial-note-actions {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+body[data-interface-theme="modern"] .article-body {
+  color: var(--modern-ink);
+  line-height: 1.85;
+}
+
+@media screen and (min-width: 769px) {
+  body[data-interface-theme="modern"] .entry-col:not(.entry-col-full-width) .search-and-sort-bar {
+    width: 330px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body[data-interface-theme="modern"] .article-content {
+    padding-inline: 16px;
+  }
+
+  body[data-interface-theme="modern"] .article-header {
+    padding-top: 18px;
+  }
+
+  body[data-interface-theme="modern"] .editorial-controls {
+    padding: 12px;
+  }
+
+  body[data-interface-theme="modern"] .editorial-controls .arco-btn {
+    min-height: 44px;
+  }
+
+  body[data-interface-theme="modern"] .search-and-sort-bar {
+    min-height: 56px;
+    padding-block: 4px;
+  }
+
+  body[data-interface-theme="modern"] .card-wrapper {
+    padding: 16px;
+  }
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar {
+  flex-wrap: wrap;
+}
+
+body[data-interface-theme="modern"] .modern-search-button {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  margin: 14px 16px 2px;
+  border: 1px solid var(--modern-line);
+  background: var(--modern-rail);
+  color: var(--modern-muted);
+  text-align: start;
+  overflow: hidden;
+}
+
+body[data-interface-theme="modern"] .modern-search-button .arco-btn-icon + span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-interface-theme="modern"] .entry-panel {
+  border-top: 1px solid var(--modern-line);
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .entry-panel-filter-label-hidden {
+  position: static;
+  width: auto;
+  height: auto;
+  margin-inline-start: 4px;
+  clip: auto;
+  overflow: visible;
+}
+
+body[data-interface-theme="modern"] .home-brand .avatar .arco-icon {
+  color: rgb(var(--primary-6)) !important;
+}
+
+body[data-interface-theme="modern"] .search-icon-trigger {
+  display: none;
+}

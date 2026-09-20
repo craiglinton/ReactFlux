@@ -115,6 +115,8 @@ const ActionButtons = () => {
     fontSize,
     fontFamily,
     titleAlignment,
+    interfaceTheme,
+    modernTitleAlignment,
   } = useStore(settingsState, {
     keys: [
       "articleWidth",
@@ -124,6 +126,8 @@ const ActionButtons = () => {
       "fontSize",
       "fontFamily",
       "titleAlignment",
+      "interfaceTheme",
+      "modernTitleAlignment",
     ],
   })
 
@@ -403,8 +407,13 @@ const ActionButtons = () => {
                   <Radio.Group
                     name="title-alignment"
                     type="button"
-                    value={titleAlignment}
-                    onChange={(value) => updateSettings({ titleAlignment: value })}
+                    value={interfaceTheme === "modern" ? modernTitleAlignment : titleAlignment}
+                    onChange={(value) =>
+                      updateSettings({
+                        [interfaceTheme === "modern" ? "modernTitleAlignment" : "titleAlignment"]:
+                          value,
+                      })
+                    }
                   >
                     {TITLE_ALIGNMENT_OPTIONS.map(({ labelKey, value }) => {
                       const AlignmentIcon = TITLE_ALIGNMENT_ICONS[value]
