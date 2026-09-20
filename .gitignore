@@ -42,3 +42,10 @@ dist-ssr
 .eslintcache
 stats.html
 src/version-info.json
+
+# Private editorial service runtime
+__pycache__/
+*.sqlite3
+*.sqlite3-*
+/editorial-preview.html
+/preview-vite.config.js
