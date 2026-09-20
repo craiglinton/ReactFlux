@@ -1,6 +1,6 @@
 import { Button, Input } from "@arco-design/web-react"
 import { useStore } from "@nanostores/react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { authState } from "@/store/authState"
 import "./EditorialNote.css"
@@ -33,30 +33,27 @@ function NoteEditor({ entryId, auth }) {
   const [note, setNote] = useState("")
   const [error, setError] = useState("")
   const [busy, setBusy] = useState("")
-  const [reload, setReload] = useState(0)
+  const pending = useRef(false)
   const dirty = saved && note !== saved.note
 
-  useEffect(() => {
-    let cancelled = false
-    request(entryId, auth)
-      .then((result) => {
-        if (cancelled) {
-          return null
-        }
-        setSaved(result)
-        setNote(result.note)
-        setError("")
-        return null
-      })
-      .catch((error_) => {
-        if (!cancelled) {
-          setError(error_.message)
-        }
-      })
-    return () => {
-      cancelled = true
+  const load = async () => {
+    if (pending.current) {
+      return
     }
-  }, [entryId, auth, reload])
+    pending.current = true
+    setBusy("load")
+    setError("")
+    try {
+      const result = await request(entryId, auth)
+      setSaved(result)
+      setNote(result.note)
+    } catch (error_) {
+      setError(error_.message)
+    } finally {
+      pending.current = false
+      setBusy("")
+    }
+  }
 
   useEffect(() => {
     if (!dirty) {
@@ -71,18 +68,30 @@ function NoteEditor({ entryId, auth }) {
   }, [dirty])
 
   const save = async (action) => {
+    if (pending.current) {
+      return
+    }
+    pending.current = true
     setBusy(action)
     setError("")
     try {
+      // Quick actions need the latest persisted note/version on first use, but
+      // simply viewing an article should not fetch editorial data.
+      const current = saved || (await request(entryId, auth))
+      if (!saved) {
+        setSaved(current)
+        setNote(current.note)
+      }
       const result = await request(entryId, auth, {
-        note: action === "note" ? note : saved.note,
-        status: action === "note" ? saved.status : action,
-        version: saved.version,
+        note: action === "note" ? note : current.note,
+        status: action === "note" ? current.status : action,
+        version: current.version,
       })
       setSaved(result)
     } catch (error_) {
       setError(error_.message)
     } finally {
+      pending.current = false
       setBusy("")
     }
   }
@@ -94,7 +103,7 @@ function NoteEditor({ entryId, auth }) {
           <Button
             key={action.value}
             aria-pressed={saved?.status === action.value}
-            disabled={!saved || Boolean(busy)}
+            disabled={Boolean(busy)}
             loading={busy === action.value}
             type={saved?.status === action.value ? "primary" : "secondary"}
             onClick={() => save(action.value)}
@@ -103,7 +112,7 @@ function NoteEditor({ entryId, auth }) {
           </Button>
         ))}
         <span aria-live="polite">
-          {busy && busy !== "note"
+          {busy && busy !== "note" && busy !== "load"
             ? "Saving…"
             : saved?.status === "done"
               ? "Done"
@@ -112,7 +121,13 @@ function NoteEditor({ entryId, auth }) {
                 : ""}
         </span>
       </div>
-      <details>
+      <details
+        onToggle={(event) => {
+          if (event.currentTarget.open && !saved) {
+            load()
+          }
+        }}
+      >
         <summary>
           Note
           {(dirty || saved?.note) && (
@@ -149,12 +164,12 @@ function NoteEditor({ entryId, auth }) {
             </div>
           </>
         )}
+        {!saved && !error && <p>Loading note…</p>}
       </details>
-      {!saved && !error && <p>Loading editorial actions…</p>}
       {error && (
         <div role="alert">
           <p>{error}</p>
-          <Button disabled={Boolean(busy)} onClick={() => setReload((value) => value + 1)}>
+          <Button disabled={Boolean(busy)} onClick={load}>
             Reload saved note
           </Button>
         </div>
