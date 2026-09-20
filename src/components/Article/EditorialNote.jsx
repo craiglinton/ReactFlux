@@ -97,7 +97,7 @@ function NoteEditor({ entryId, auth }) {
   }
 
   return (
-    <section aria-label="Editorial actions" className="editorial-note">
+    <section aria-label="Editorial actions" className="editorial-controls">
       <div className="editorial-quick-actions">
         {actions.map((action) => (
           <Button
@@ -122,6 +122,7 @@ function NoteEditor({ entryId, auth }) {
         </span>
       </div>
       <details
+        className="editorial-note"
         onToggle={(event) => {
           if (event.currentTarget.open && !saved) {
             load()
