@@ -373,6 +373,10 @@
     "settings_export_error": "Einstellungssicherung konnte nicht exportiert werden"
   },
   "appearance": {
+    "interface_theme_label": "Design",
+    "interface_theme_description": "Modern bietet eine aufgeräumte Leseansicht. Sie können jederzeit zu Klassisch zurückkehren. Die Auswahl gilt pro Browser; andere Einstellungen bleiben erhalten.",
+    "interface_theme_classic": "Klassisch",
+    "interface_theme_modern": "Modern",
     "section_theme_interface": "Design und Oberfläche",
     "section_article_cards": "Artikelkarten",
     "section_article_view": "Artikelansicht",

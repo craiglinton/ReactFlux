@@ -45,6 +45,13 @@ export const THEME_MODE_OPTIONS = Object.freeze([
 
 export const THEME_MODES = Object.freeze(THEME_MODE_OPTIONS.map(({ value }) => value))
 
+export const INTERFACE_THEME_OPTIONS = Object.freeze([
+  { value: "classic", labelKey: "appearance.interface_theme_classic" },
+  { value: "modern", labelKey: "appearance.interface_theme_modern" },
+])
+
+export const INTERFACE_THEMES = Object.freeze(INTERFACE_THEME_OPTIONS.map(({ value }) => value))
+
 export const TITLE_ALIGNMENT_OPTIONS = Object.freeze([
   { value: "left", labelKey: "appearance.title_alignment_left" },
   { value: "center", labelKey: "appearance.title_alignment_center" },

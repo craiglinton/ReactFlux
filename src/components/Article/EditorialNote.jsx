@@ -98,6 +98,10 @@ function NoteEditor({ entryId, auth }) {
 
   return (
     <section aria-label="Editorial actions" className="editorial-controls">
+      <div className="editorial-modern-heading">
+        <strong>Editorial actions</strong>
+        <span>Private</span>
+      </div>
       <div className="editorial-quick-actions">
         {actions.map((action) => (
           <Button

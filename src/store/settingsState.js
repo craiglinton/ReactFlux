@@ -28,12 +28,14 @@ export const articleEntryInteractionSettingsState = selectShallowSettings(
 export const articleCardSettingsState = selectShallowSettings(
   ({
     coverDisplayMode,
+    interfaceTheme,
+    modernCoverDisplayMode,
     showDetailedRelativeTime,
     showEstimatedReadingTime,
     showFeedIcon,
     summaryLines,
   }) => ({
-    coverDisplayMode,
+    coverDisplayMode: interfaceTheme === "modern" ? modernCoverDisplayMode : coverDisplayMode,
     showDetailedRelativeTime,
     showEstimatedReadingTime,
     showFeedIcon,
@@ -72,6 +74,8 @@ export const articleDetailSettingsState = selectShallowSettings(
     fontFamily,
     fontSize,
     lightboxSlideAnimation,
+    interfaceTheme,
+    modernTitleAlignment,
     titleAlignment,
   }) => ({
     articleWidth,
@@ -80,7 +84,7 @@ export const articleDetailSettingsState = selectShallowSettings(
     fontFamily,
     fontSize,
     lightboxSlideAnimation,
-    titleAlignment,
+    titleAlignment: interfaceTheme === "modern" ? modernTitleAlignment : titleAlignment,
   }),
 )
 

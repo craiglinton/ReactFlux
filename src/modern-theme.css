@@ -1,0 +1,833 @@
+/* Optional presentation only. Removing data-interface-theme restores Classic. */
+body[data-interface-theme="modern"] {
+  --modern-paper: #ffffff;
+  --modern-rail: #f4f6f9;
+  --modern-line: #e2e8f0;
+  --modern-ink: #202c3d;
+  --modern-accent-text: rgb(var(--primary-6));
+  --modern-muted: #647287;
+  --color-bg-1: var(--modern-paper);
+  --color-bg-2: var(--modern-rail);
+  --color-bg-3: var(--modern-paper);
+  --color-text-1: var(--modern-ink);
+  --color-text-2: #435168;
+  --color-text-3: var(--modern-muted);
+  --color-border-2: var(--modern-line);
+  --border-radius-medium: 8px;
+  --modern-elevated: #ffffff;
+  --modern-control: #f4f6fa;
+  --modern-hover: #eaf0f7;
+  --modern-control-line: #c4cedc;
+  --modern-overlay-line: #cbd5e1;
+  --modern-mask: rgb(15 23 42 / 40%);
+  --modern-popup-shadow: 0 12px 36px rgb(15 23 42 / 18%), 0 2px 8px rgb(15 23 42 / 8%);
+  --modern-dialog-shadow: 0 32px 90px rgb(15 23 42 / 30%), 0 8px 24px rgb(15 23 42 / 12%);
+  --color-bg-popup: var(--modern-elevated);
+  --color-tooltip-bg: var(--modern-elevated);
+  --color-bg-4: var(--modern-elevated);
+  --color-bg-5: var(--modern-elevated);
+  --color-fill-1: var(--modern-rail);
+  --color-fill-2: var(--modern-control);
+  --color-fill-3: var(--modern-hover);
+  --color-fill-4: var(--modern-control-line);
+  --color-border-1: var(--modern-line);
+  --color-border-3: var(--modern-control-line);
+  --color-border-4: var(--modern-overlay-line);
+  --shadow: var(--modern-popup-shadow);
+}
+
+body[data-interface-theme="modern"][arco-theme="dark"] {
+  --modern-paper: #15191f;
+  --modern-rail: #11151a;
+  --modern-line: #2a323f;
+  --modern-ink: #e1e7f0;
+  --modern-accent-text: rgb(var(--primary-4));
+  --modern-muted: #9ba8bb;
+  --color-text-2: #c2ccda;
+  --modern-elevated: #222b38;
+  --modern-control: #19222f;
+  --modern-hover: #2f3d50;
+  --modern-control-line: #53647b;
+  --modern-overlay-line: #4a5c74;
+  --modern-mask: rgb(3 7 14 / 72%);
+  --modern-popup-shadow: 0 16px 44px rgb(0 0 0 / 45%), 0 2px 10px rgb(0 0 0 / 30%);
+  --modern-dialog-shadow: 0 32px 100px rgb(0 0 0 / 60%), 0 8px 28px rgb(0 0 0 / 40%);
+}
+
+body[data-interface-theme="modern"] .sidebar,
+body[data-interface-theme="modern"] .sidebar-expanded .menu-header,
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-light,
+body[data-interface-theme="modern"]
+  .sidebar-container
+  .arco-menu-light
+  :is(.arco-menu-item, .arco-menu-group-title, .arco-menu-pop-header, .arco-menu-inline-header) {
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .menu-header {
+  min-height: 62px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .sidebar .desktop-sidebar-toggle.arco-btn {
+  top: 16px;
+}
+
+body[data-interface-theme="modern"] .home-brand .avatar {
+  border-radius: 9px;
+  color: var(--modern-accent-text);
+  background: var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .section-title {
+  margin-block: 22px 10px;
+  color: var(--modern-muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-selected,
+body[data-interface-theme="modern"] .sidebar-container .submenu-active {
+  background: var(--color-primary-light-1) !important;
+}
+
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-item {
+  border-radius: 7px;
+}
+
+body[data-interface-theme="modern"] .entry-col {
+  background: var(--modern-paper);
+  border-inline-end: 1px solid var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar {
+  box-sizing: border-box;
+  min-height: 63px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--modern-line);
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar .title-container .arco-typography {
+  color: var(--modern-ink);
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar .count-label {
+  color: var(--modern-muted);
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .entry-list-layout-column {
+  box-sizing: border-box;
+  padding: 0;
+  width: 100%;
+}
+
+body[data-interface-theme="modern"] .entry-list-layout-column .article-list-divider {
+  margin: 0;
+  border-color: var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .card-wrapper {
+  margin-inline: 0;
+  padding: 20px 20px 20px 17px;
+  border-inline-start: 3px solid transparent;
+  border-radius: 0;
+}
+
+body[data-interface-theme="modern"] .article-entry.selected {
+  border-inline-start-color: rgb(var(--primary-6));
+  background: var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .article-entry:hover:not(.selected) {
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .card-title {
+  margin-block: 7px;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+body[data-interface-theme="modern"] .card-source-title,
+body[data-interface-theme="modern"] .card-time-wrapper,
+body[data-interface-theme="modern"] .card-author {
+  color: var(--modern-muted);
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .card-preview {
+  color: var(--modern-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+body[data-interface-theme="modern"] .card-image-wide,
+body[data-interface-theme="modern"] .card-image-mini {
+  box-shadow: none;
+}
+
+body[data-interface-theme="modern"] .article-container,
+body[data-interface-theme="modern"] .content-empty {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body[data-interface-theme="modern"] .action-buttons:not(.mobile) {
+  box-sizing: border-box;
+  min-height: 63px;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--modern-line);
+}
+
+body[data-interface-theme="modern"] .article-content {
+  padding: 0 28px;
+}
+
+body[data-interface-theme="modern"] .article-header {
+  padding-top: 28px;
+}
+
+body[data-interface-theme="modern"] .article-title.arco-typography {
+  margin-bottom: 18px;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+}
+
+body[data-interface-theme="modern"] .article-title a {
+  margin-inline: 0;
+  font-weight: 600;
+}
+
+body[data-interface-theme="modern"] .article-meta .arco-typography,
+body[data-interface-theme="modern"] .article-date {
+  color: var(--modern-muted);
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .article-header .arco-divider {
+  border: 0;
+  margin: 20px 0;
+}
+
+body[data-interface-theme="modern"] .editorial-controls {
+  box-sizing: border-box;
+  margin: 0 auto 24px;
+  padding: 16px;
+  border: 1px solid var(--modern-line);
+  border-radius: 10px;
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .editorial-modern-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+
+body[data-interface-theme="modern"] .editorial-modern-heading strong {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+body[data-interface-theme="modern"] .editorial-modern-heading span {
+  color: var(--modern-muted);
+}
+
+body[data-interface-theme="modern"] .editorial-quick-actions {
+  justify-content: flex-start;
+}
+
+body[data-interface-theme="modern"] .editorial-quick-actions .arco-btn-secondary {
+  border: 1px solid var(--modern-line);
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .editorial-note {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+body[data-interface-theme="modern"] .editorial-note summary {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+body[data-interface-theme="modern"] .editorial-note .arco-textarea {
+  border: 1px solid var(--modern-line);
+  border-radius: 7px;
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .editorial-note-actions {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+body[data-interface-theme="modern"] .article-body {
+  color: var(--modern-ink);
+  line-height: 1.85;
+}
+
+@media screen and (min-width: 769px) {
+  body[data-interface-theme="modern"] .entry-col:not(.entry-col-full-width) .search-and-sort-bar {
+    width: 330px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body[data-interface-theme="modern"] .article-content {
+    padding-inline: 16px;
+  }
+
+  body[data-interface-theme="modern"] .article-header {
+    padding-top: 18px;
+  }
+
+  body[data-interface-theme="modern"] .editorial-controls {
+    padding: 12px;
+  }
+
+  body[data-interface-theme="modern"] .editorial-controls .arco-btn {
+    min-height: 44px;
+  }
+
+  body[data-interface-theme="modern"] .search-and-sort-bar {
+    min-height: 56px;
+    padding: 4px 16px;
+  }
+
+  body[data-interface-theme="modern"] .card-wrapper {
+    padding: 16px 16px 16px 13px;
+  }
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar {
+  flex-wrap: wrap;
+}
+
+body[data-interface-theme="modern"] .modern-search-button {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 14px 0 2px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--modern-line);
+  background: var(--modern-rail);
+  color: var(--modern-muted);
+  text-align: start;
+  overflow: hidden;
+}
+
+body[data-interface-theme="modern"] .modern-search-button .arco-btn-icon + span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-interface-theme="modern"] .entry-panel {
+  border-top: 1px solid var(--modern-line);
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .entry-panel-filter-label-hidden {
+  position: static;
+  width: auto;
+  height: auto;
+  margin-inline-start: 4px;
+  clip: auto;
+  overflow: visible;
+}
+
+body[data-interface-theme="modern"] .home-brand .avatar .arco-icon {
+  color: rgb(var(--primary-6)) !important;
+}
+
+body[data-interface-theme="modern"] .search-icon-trigger {
+  display: none;
+}
+
+/* Raised surfaces remain distinct from the reading canvas in both color modes. */
+body[data-interface-theme="modern"] :is(.arco-modal-mask, .arco-drawer-mask) {
+  background: var(--modern-mask);
+  backdrop-filter: blur(3px);
+}
+
+body[data-interface-theme="modern"] :is(.arco-modal, .arco-drawer-inner) {
+  border: 1px solid var(--modern-overlay-line);
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-dialog-shadow);
+}
+
+body[data-interface-theme="modern"] .arco-modal {
+  border-radius: 16px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-header {
+  height: 64px;
+  margin: 0;
+  border-bottom: 1px solid var(--modern-line);
+  padding: 0 24px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-title {
+  color: var(--modern-ink);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: start;
+  letter-spacing: -0.4px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-footer {
+  border-top: 1px solid var(--modern-line);
+  padding: 16px 24px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-close-icon:has(.accessible-modal-close-button) {
+  top: 10px;
+  right: 10px;
+}
+
+body[data-interface-theme="modern"] .accessible-modal-close-button {
+  border-radius: 10px;
+  color: var(--modern-muted);
+}
+
+body[data-interface-theme="modern"]
+  :is(.arco-dropdown-menu, .arco-select-popup, .arco-picker-container, .arco-popover-content) {
+  border: 1px solid var(--modern-overlay-line);
+  border-radius: 10px;
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-popup-shadow);
+}
+
+body[data-interface-theme="modern"] .mobile-action-menu {
+  border: 1px solid var(--modern-overlay-line);
+  border-radius: 12px;
+  padding: 6px;
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-popup-shadow);
+}
+
+body[data-interface-theme="modern"]
+  .mobile-action-menu
+  :is(.arco-menu-item, .arco-menu-pop-header) {
+  border-radius: 7px;
+  color: var(--modern-ink);
+  background: transparent;
+}
+
+body[data-interface-theme="modern"]
+  .mobile-action-menu
+  :is(.arco-menu-item, .arco-menu-pop-header):hover {
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"] .arco-select-option-selected {
+  color: var(--modern-accent-text);
+  background: var(--color-primary-light-1);
+  font-weight: 600;
+}
+
+body[data-interface-theme="modern"] .settings-modal {
+  width: 760px;
+  max-width: calc(100vw - 32px);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-modal-content {
+  padding: 0 24px 24px;
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-modal-content::before {
+  content: none;
+}
+
+body[data-interface-theme="modern"] .settings-modal .settings-tabs-scroll {
+  max-height: calc(90dvh - 90px);
+  margin-right: -24px;
+  padding-right: 24px;
+}
+
+body[data-interface-theme="modern"] .settings-modal .custom-tabs > .arco-tabs-header-nav {
+  padding-top: 14px;
+  background: var(--modern-elevated);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title {
+  margin: 0 4px 12px 0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--modern-muted);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title:hover {
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title-active {
+  color: var(--modern-accent-text);
+  background: var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .settings-modal [data-settings-tab-key] {
+  flex-direction: row !important;
+  gap: 7px;
+}
+
+body[data-interface-theme="modern"] .settings-modal [data-settings-tab-key] > .arco-icon {
+  font-size: 17px !important;
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-ink {
+  display: none;
+}
+
+body[data-interface-theme="modern"] .setting-section-title.arco-typography {
+  margin-bottom: 20px !important;
+  color: var(--modern-muted) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.09em;
+}
+
+body[data-interface-theme="modern"] .setting-row-header h6.arco-typography {
+  margin-bottom: 6px;
+  color: var(--modern-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body[data-interface-theme="modern"] .setting-row-header .arco-typography-secondary {
+  color: var(--modern-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Keep validation, disabled states and primary buttons under Arco's control. */
+:where(body[data-interface-theme="modern"])
+  :is(.arco-input, .arco-input-inner-wrapper, .arco-textarea, .arco-select-view, .arco-picker) {
+  border-color: var(--modern-control-line);
+  border-radius: 8px;
+  background-color: var(--modern-control);
+}
+
+body[data-interface-theme="modern"]
+  :is(
+    .arco-input,
+    .arco-input-inner-wrapper,
+    .arco-textarea,
+    .arco-select-view,
+    .arco-picker
+  ):focus-within {
+  border-color: rgb(var(--primary-6));
+  box-shadow: 0 0 0 3px var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .arco-input-inner-wrapper .arco-input {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-interface-theme="modern"] .arco-btn-secondary:not(.arco-btn-disabled) {
+  border-color: var(--modern-control-line);
+  border-radius: 8px;
+  color: var(--modern-ink);
+  background: var(--modern-control);
+}
+
+body[data-interface-theme="modern"] .arco-btn-secondary:not(.arco-btn-disabled):hover {
+  border-color: var(--modern-overlay-line);
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"]
+  :is(.action-buttons, .search-and-sort-bar, .entry-panel)
+  .arco-btn-secondary:not(.arco-btn-disabled, .modern-search-button) {
+  border-color: transparent;
+  color: var(--modern-muted);
+  background: transparent;
+}
+
+body[data-interface-theme="modern"]
+  :is(.action-buttons, .search-and-sort-bar, .entry-panel)
+  .arco-btn-secondary:not(.arco-btn-disabled, .modern-search-button):hover {
+  color: var(--modern-ink);
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"]
+  :is(button, [role="tab"], [role="menuitem"], summary):focus-visible {
+  outline: 2px solid rgb(var(--primary-6));
+  outline-offset: 3px;
+}
+
+body[data-interface-theme="modern"] .arco-radio-group-type-button {
+  border: 1px solid var(--modern-line);
+  border-radius: 9px;
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .arco-radio-button-checked {
+  border-radius: 6px;
+  background: var(--modern-elevated);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+
+body[data-interface-theme="modern"] .list-entry-wrapper {
+  border-inline-start: 3px solid transparent;
+  border-radius: 0;
+  padding: 12px 16px 12px 22px;
+}
+
+body[data-interface-theme="modern"] .list-entry-wrapper::before {
+  left: 8px;
+}
+
+body[data-interface-theme="modern"] .grid-card-wrapper {
+  border-radius: 12px;
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .grid-card-copy {
+  padding: 16px;
+}
+
+body[data-interface-theme="modern"] .grid-card-wrapper.selected {
+  border-color: rgb(var(--primary-6));
+}
+
+body[data-interface-theme="modern"] .editorial-quick-actions span[aria-live] {
+  text-align: start;
+}
+
+@media screen and (max-width: 768px) {
+  body[data-interface-theme="modern"] .settings-modal {
+    max-width: none;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal > [data-focus-lock-disabled] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-modal-header {
+    flex: 0 0 60px;
+    padding-inline: 16px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-modal-content {
+    flex: 1 1 auto;
+    height: auto;
+    padding: 0 16px 16px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .settings-tabs-scroll {
+    max-height: none;
+    margin-right: -16px;
+    padding-right: 16px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-nav {
+    padding-right: 0;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title {
+    padding: 12px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal [data-settings-tab-key] {
+    flex-direction: column !important;
+    gap: 4px;
+  }
+}
+
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-selected,
+body[data-interface-theme="modern"] .arco-radio-button-checked {
+  color: var(--modern-accent-text);
+}
+
+body[data-interface-theme="modern"] .setting-row-header .arco-typography {
+  word-break: normal;
+}
+
+:where(body[data-interface-theme="modern"])
+  .arco-select:where(:not(.arco-select-disabled, .arco-select-error, .arco-select-warning))
+  .arco-select-view {
+  border-color: var(--modern-control-line);
+}
+
+:where(body[data-interface-theme="modern"])
+  .arco-select-focused:where(:not(.arco-select-disabled, .arco-select-error, .arco-select-warning))
+  .arco-select-view {
+  border-color: rgb(var(--primary-6));
+  box-shadow: 0 0 0 3px var(--color-primary-light-1);
+}
+
+/* A single measure aligns the headline, metadata, editorial panel and article.
+   ch is resolved once using the reader's chosen font and size. */
+body[data-interface-theme="modern"] .article-reading-column {
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  font-family: var(--reader-font-family, inherit);
+  font-size: var(--reader-font-size);
+}
+
+body[data-interface-theme="modern"]
+  .article-reading-column
+  > :is(.article-header, .article-body, .editorial-controls) {
+  box-sizing: border-box;
+  max-width: none !important;
+  width: 100%;
+  margin-inline: 0;
+}
+
+body[data-interface-theme="modern"] .article-header {
+  padding-bottom: 24px;
+}
+
+body[data-interface-theme="modern"] .article-header .arco-divider {
+  display: none;
+}
+
+body[data-interface-theme="modern"] .article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: var(--reader-title-align);
+  gap: 4px 8px;
+  margin-bottom: 8px;
+}
+
+body[data-interface-theme="modern"] .article-meta .arco-typography {
+  line-height: 1.6 !important;
+  word-break: normal;
+}
+
+body[data-interface-theme="modern"] .article-meta a {
+  margin-inline: 0;
+}
+
+body[data-interface-theme="modern"] .article-meta .arco-tag {
+  margin-left: 0 !important;
+}
+
+body[data-interface-theme="modern"] .article-category {
+  flex-basis: 100%;
+}
+
+body[data-interface-theme="modern"] .article-title.arco-typography {
+  margin-top: 0;
+}
+
+body[data-interface-theme="modern"] .article-date {
+  display: inline-block;
+  line-height: 1.8;
+}
+
+body[data-interface-theme="modern"] .article-body > :first-child {
+  margin-block-start: 0;
+}
+
+/* Metadata icons occupy their own row; unread dots stay in the outer gutter. */
+body[data-interface-theme="modern"] .card-source {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 8px;
+}
+
+body[data-interface-theme="modern"] .card-source-content {
+  display: contents;
+}
+
+body[data-interface-theme="modern"] .card-source-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body[data-interface-theme="modern"] .card-source:not(:has(.feed-icon-mini)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body[data-interface-theme="modern"] .card-author {
+  grid-column: 1 / -1;
+}
+
+body[data-interface-theme="modern"] .card-title {
+  overflow: visible;
+  padding-inline-start: 0;
+  display: block;
+}
+
+body[data-interface-theme="modern"] .card-title::before {
+  inset-inline-start: -12px;
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar .page-info {
+  margin-left: 0;
+}
+
+body[data-interface-theme="modern"] .search-and-sort-bar .button-group {
+  margin-inline: 8px 0;
+}
+
+body[data-interface-theme="modern"] .modern-search-button .arco-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+body[data-interface-theme="modern"] .modern-search-button .arco-btn-icon + span {
+  margin-left: 0;
+}
+
+body[data-interface-theme="modern"] .arco-tooltip-content {
+  border: 1px solid var(--modern-overlay-line);
+  border-radius: 8px;
+  color: var(--modern-ink);
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-popup-shadow);
+}
+
+body[data-interface-theme="modern"] .arco-tooltip-content-inner {
+  color: inherit;
+}
+
+body[data-interface-theme="modern"] .arco-trigger-arrow.arco-tooltip-arrow {
+  background: var(--modern-elevated);
+}
+
+body[data-interface-theme="modern"]
+  .arco-trigger[trigger-placement]
+  .arco-trigger-arrow.arco-tooltip-arrow {
+  border-color: var(--modern-overlay-line);
+}
+
+@media screen and (max-width: 768px) {
+  body[data-interface-theme="modern"] .article-reading-column {
+    max-width: none;
+  }
+}

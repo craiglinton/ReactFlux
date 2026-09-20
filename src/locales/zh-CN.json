@@ -373,6 +373,10 @@
     "settings_export_error": "导出设置备份失败"
   },
   "appearance": {
+    "interface_theme_label": "主题",
+    "interface_theme_description": "选择现代主题以获得清晰的阅读界面。可随时切回经典主题。此选项按浏览器保存，其他偏好保持不变。",
+    "interface_theme_classic": "经典",
+    "interface_theme_modern": "现代",
     "section_theme_interface": "主题与界面",
     "section_article_cards": "文章卡片",
     "section_article_view": "文章视图",

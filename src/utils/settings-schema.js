@@ -7,6 +7,7 @@ import { createDefaultHomePages, sanitizeHomePages } from "@/utils/home-page"
 import {
   ARTICLE_LIST_LAYOUTS,
   FONT_FAMILIES,
+  INTERFACE_THEMES,
   MAX_ARTICLE_FONT_SIZE,
   MAX_ARTICLE_WIDTH,
   MIN_ARTICLE_FONT_SIZE,
@@ -131,6 +132,9 @@ const SETTINGS_SCHEMA = {
     sanitize: sanitizeLanguage,
   },
   lightboxSlideAnimation: booleanSetting(true),
+  interfaceTheme: enumSetting("classic", INTERFACE_THEMES),
+  modernCoverDisplayMode: enumSetting("none", ["auto", "banner", "thumbnail", "none"]),
+  modernTitleAlignment: enumSetting("left", TITLE_ALIGNMENTS),
   markAllReadJumpToNext: booleanSetting(false),
   markReadBy: enumSetting("view", ["view", "manually"]),
   markReadOnScroll: booleanSetting(false),

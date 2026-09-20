@@ -11,6 +11,7 @@ import { applyColor, colors, getDisplayColorValue } from "@/utils/colors"
 import {
   ARTICLE_LIST_LAYOUT_OPTIONS,
   createFontFamilyOptions,
+  INTERFACE_THEME_OPTIONS,
   MAX_ARTICLE_FONT_SIZE,
   MAX_ARTICLE_WIDTH,
   MIN_ARTICLE_FONT_SIZE,
@@ -37,7 +38,10 @@ const Appearance = () => {
     edgeToEdgeImages,
     fontFamily,
     fontSize,
+    interfaceTheme,
     lightboxSlideAnimation,
+    modernCoverDisplayMode,
+    modernTitleAlignment,
     showCardSummary,
     showDetailedRelativeTime,
     showEstimatedReadingTime,
@@ -56,7 +60,10 @@ const Appearance = () => {
       "edgeToEdgeImages",
       "fontFamily",
       "fontSize",
+      "interfaceTheme",
       "lightboxSlideAnimation",
+      "modernCoverDisplayMode",
+      "modernTitleAlignment",
       "showCardSummary",
       "showDetailedRelativeTime",
       "showEstimatedReadingTime",
@@ -75,6 +82,24 @@ const Appearance = () => {
   return (
     <>
       <SettingSection title={polyglot.t("appearance.section_theme_interface")}>
+        <SettingItem
+          description={polyglot.t("appearance.interface_theme_description")}
+          title={polyglot.t("appearance.interface_theme_label")}
+        >
+          <Select
+            aria-label={polyglot.t("appearance.interface_theme_label")}
+            className="input-select"
+            value={interfaceTheme}
+            onChange={(value) => handleConfigChange({ interfaceTheme: value })}
+          >
+            {INTERFACE_THEME_OPTIONS.map(({ labelKey, value }) => (
+              <Select.Option key={value} value={value}>
+                {polyglot.t(labelKey)}
+              </Select.Option>
+            ))}
+          </Select>
+        </SettingItem>
+
         <SettingItem
           description={polyglot.t("appearance.theme_mode_description")}
           title={polyglot.t("appearance.theme_mode_label")}
@@ -167,8 +192,13 @@ const Appearance = () => {
           >
             <Select
               className="input-select"
-              value={coverDisplayMode}
-              onChange={(value) => handleConfigChange({ coverDisplayMode: value })}
+              value={interfaceTheme === "modern" ? modernCoverDisplayMode : coverDisplayMode}
+              onChange={(value) =>
+                handleConfigChange({
+                  [interfaceTheme === "modern" ? "modernCoverDisplayMode" : "coverDisplayMode"]:
+                    value,
+                })
+              }
             >
               <Select.Option value="auto">
                 {polyglot.t("appearance.cover_display_mode_auto")}
@@ -318,8 +348,12 @@ const Appearance = () => {
         >
           <Select
             className="input-select"
-            value={titleAlignment}
-            onChange={(value) => handleConfigChange({ titleAlignment: value })}
+            value={interfaceTheme === "modern" ? modernTitleAlignment : titleAlignment}
+            onChange={(value) =>
+              handleConfigChange({
+                [interfaceTheme === "modern" ? "modernTitleAlignment" : "titleAlignment"]: value,
+              })
+            }
           >
             {TITLE_ALIGNMENT_OPTIONS.map(({ labelKey, value }) => (
               <Select.Option key={value} value={value}>

@@ -179,3 +179,23 @@ Made with [contrib.rocks](https://contrib.rocks).
 Set `VITE_MINIFLUX_SERVER=/miniflux` at build time to supply the server automatically, hide its address field, and default to username/password login. Relative paths resolve against the reader origin. When this setting is present, URL query parameters cannot override the server or trigger automatic login. API-token login remains available. Omit it to retain the general-purpose server selector.
 
 The private editorial panel uses `VITE_EDITORIAL_API=/editorial`. **Add to wiki** and **Check coverage** save the selected instruction immediately; **Note** expands the text editor and **Save note**. Quick actions preserve saved notes and leave drafts unsaved. The selected action is highlighted after successful persistence. Viewing an article makes no editorial request; opening Note loads the saved record. A quick action fetches it on first use to preserve existing note text and the version guard.
+
+### Optional Modern theme (AILawWiki fork)
+
+Open **Settings → Appearance → Theme** and choose **Modern**. **Classic** is
+still the default for existing and new browsers, and restores the original
+presentation immediately. The choice is stored locally per browser and included
+in settings export/import; it does not change the server or article data.
+
+Modern adds quieter light/dark surfaces, compact text-focused article rows,
+clearer selected items, a visible Search control, and a grouped editorial panel.
+Settings, dialogs, menus, and form controls use distinct raised surfaces with
+consistent borders, focus states, and mobile spacing in both light and dark mode.
+Headlines, metadata, editorial controls and article text share one reading width;
+list text uses consistent gutters, and tooltips use the Modern surface palette.
+Cover display and title alignment are remembered separately for each theme;
+Modern starts with no covers and left-aligned titles. Other appearance choices,
+feed groups, keyboard controls, read/star states, and editorial saves keep their
+existing behavior. Quick editorial actions still save immediately; note drafts
+still require **Save note**. Switching back to Classic removes the scoped Modern
+styles. No backend or database migration is required.

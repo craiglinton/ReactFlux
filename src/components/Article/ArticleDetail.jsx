@@ -595,7 +595,15 @@ const ArticleDetail = forwardRef((_, ref) => {
         className="scroll-container"
         scrollableNodeProps={{ tabIndex: -1 }}
       >
-        <FadeTransition>
+        <FadeTransition
+          className="article-reading-column"
+          style={{
+            "--reader-max-width": `${articleWidth}ch`,
+            "--reader-font-size": `${fontSize}rem`,
+            "--reader-font-family": fontFamily,
+            "--reader-title-align": titleAlignment,
+          }}
+        >
           <div
             className="article-header"
             style={{ maxWidth: responsiveMaxWidth, textAlign: titleAlignment }}
@@ -617,8 +625,13 @@ const ArticleDetail = forwardRef((_, ref) => {
               <Typography.Text>
                 <CustomLink text={feedTitle} url={`/feed/${feedId}`} />
               </Typography.Text>
-              {activeContent.author && <Typography.Text> - {activeContent.author}</Typography.Text>}
-              <Typography.Text>
+              {activeContent.author && (
+                <Typography.Text className="article-author">
+                  {" "}
+                  - {activeContent.author}
+                </Typography.Text>
+              )}
+              <Typography.Text className="article-category">
                 <Tag
                   size="small"
                   style={{ marginLeft: "10px", cursor: "pointer" }}

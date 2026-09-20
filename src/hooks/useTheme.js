@@ -5,12 +5,19 @@ import { settingsState } from "@/store/settingsState"
 import { applyColor } from "@/utils/colors"
 
 const useTheme = () => {
-  const { themeColor, themeMode } = useStore(settingsState, {
-    keys: ["themeColor", "themeMode"],
+  const { interfaceTheme, themeColor, themeMode } = useStore(settingsState, {
+    keys: ["interfaceTheme", "themeColor", "themeMode"],
   })
   const [isSystemDark, setIsSystemDark] = useState(
     globalThis.matchMedia("(prefers-color-scheme: dark)").matches,
   )
+
+  useEffect(() => {
+    document.body.dataset.interfaceTheme = interfaceTheme
+    return () => {
+      delete document.body.dataset.interfaceTheme
+    }
+  }, [interfaceTheme])
 
   useEffect(() => {
     const mediaQuery = globalThis.matchMedia("(prefers-color-scheme: dark)")

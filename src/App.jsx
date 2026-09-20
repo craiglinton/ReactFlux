@@ -63,11 +63,17 @@ const App = () => {
   const { isBelowLarge } = useScreenWidth()
 
   const { polyglot } = useStore(polyglotState)
-  const { language } = useStore(settingsState, { keys: ["language"] })
+  const { interfaceTheme, language } = useStore(settingsState, {
+    keys: ["interfaceTheme", "language"],
+  })
   const isDesktopSidebarCollapsed = useStore(desktopSidebarCollapsedState)
   const locale = getLocale(language)
   const sidebarCollapseLabel = polyglot?.t("sidebar.collapse")
-  const sidebarWidth = isDesktopSidebarCollapsed ? 0 : EXPANDED_SIDEBAR_WIDTH
+  const sidebarWidth = isDesktopSidebarCollapsed
+    ? 0
+    : interfaceTheme === "modern"
+      ? 208
+      : EXPANDED_SIDEBAR_WIDTH
 
   const collapseButtonRef = useRef(null)
   const detailCloseButtonRef = useRef(null)
@@ -141,7 +147,7 @@ const App = () => {
                 breakpoint="lg"
                 collapsible={false}
                 trigger={null}
-                width={EXPANDED_SIDEBAR_WIDTH}
+                width={sidebarWidth}
                 className={`sidebar ${
                   isDesktopSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"
                 }`}
