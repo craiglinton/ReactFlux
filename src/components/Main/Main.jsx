@@ -12,6 +12,7 @@ import { polyglotState } from "@/hooks/useLanguage"
 import useModalToggle from "@/hooks/useModalToggle"
 import useScreenWidth from "@/hooks/useScreenWidth"
 import { catalogCategoriesState, catalogFeedsState } from "@/store/dataState"
+import { settingsState } from "@/store/settingsState"
 import includesIgnoreCase from "@/utils/filter"
 import { DEFAULT_SETTINGS_TAB } from "@/utils/settings-navigation"
 import "./Main.css"
@@ -21,6 +22,7 @@ const categoryRule = [{ required: true }]
 const crawlerRule = [{ type: "boolean" }]
 
 const SettingsModal = () => {
+  const { interfaceTheme } = useStore(settingsState, { keys: ["interfaceTheme"] })
   const location = useLocation()
   const { polyglot } = useStore(polyglotState)
 
@@ -65,7 +67,7 @@ const SettingsModal = () => {
       dialogLabel={settingsTitle}
       fallbackFocusSelector=".sidebar-profile-trigger"
       footer={null}
-      title={null}
+      title={interfaceTheme === "modern" ? settingsTitle : null}
       visible={settingsModalVisible}
       wrapClassName="settings-modal-wrapper"
       onCancel={handleClose}

@@ -4,6 +4,7 @@ body[data-interface-theme="modern"] {
   --modern-rail: #f4f6f9;
   --modern-line: #e2e8f0;
   --modern-ink: #202c3d;
+  --modern-accent-text: rgb(var(--primary-6));
   --modern-muted: #647287;
   --color-bg-1: var(--modern-paper);
   --color-bg-2: var(--modern-rail);
@@ -13,7 +14,25 @@ body[data-interface-theme="modern"] {
   --color-text-3: var(--modern-muted);
   --color-border-2: var(--modern-line);
   --border-radius-medium: 8px;
-  --shadow: none;
+  --modern-elevated: #ffffff;
+  --modern-control: #f4f6fa;
+  --modern-hover: #eaf0f7;
+  --modern-control-line: #c4cedc;
+  --modern-overlay-line: #cbd5e1;
+  --modern-mask: rgb(15 23 42 / 40%);
+  --modern-popup-shadow: 0 12px 36px rgb(15 23 42 / 18%), 0 2px 8px rgb(15 23 42 / 8%);
+  --modern-dialog-shadow: 0 32px 90px rgb(15 23 42 / 30%), 0 8px 24px rgb(15 23 42 / 12%);
+  --color-bg-popup: var(--modern-elevated);
+  --color-bg-4: var(--modern-elevated);
+  --color-bg-5: var(--modern-elevated);
+  --color-fill-1: var(--modern-rail);
+  --color-fill-2: var(--modern-control);
+  --color-fill-3: var(--modern-hover);
+  --color-fill-4: var(--modern-control-line);
+  --color-border-1: var(--modern-line);
+  --color-border-3: var(--modern-control-line);
+  --color-border-4: var(--modern-overlay-line);
+  --shadow: var(--modern-popup-shadow);
 }
 
 body[data-interface-theme="modern"][arco-theme="dark"] {
@@ -21,8 +40,17 @@ body[data-interface-theme="modern"][arco-theme="dark"] {
   --modern-rail: #11151a;
   --modern-line: #2a323f;
   --modern-ink: #e1e7f0;
+  --modern-accent-text: rgb(var(--primary-4));
   --modern-muted: #9ba8bb;
   --color-text-2: #c2ccda;
+  --modern-elevated: #222b38;
+  --modern-control: #19222f;
+  --modern-hover: #2f3d50;
+  --modern-control-line: #53647b;
+  --modern-overlay-line: #4a5c74;
+  --modern-mask: rgb(3 7 14 / 72%);
+  --modern-popup-shadow: 0 16px 44px rgb(0 0 0 / 45%), 0 2px 10px rgb(0 0 0 / 30%);
+  --modern-dialog-shadow: 0 32px 100px rgb(0 0 0 / 60%), 0 8px 28px rgb(0 0 0 / 40%);
 }
 
 body[data-interface-theme="modern"] .sidebar,
@@ -47,7 +75,7 @@ body[data-interface-theme="modern"] .sidebar .desktop-sidebar-toggle.arco-btn {
 
 body[data-interface-theme="modern"] .home-brand .avatar {
   border-radius: 9px;
-  color: rgb(var(--primary-6));
+  color: var(--modern-accent-text);
   background: var(--color-primary-light-1);
 }
 
@@ -240,7 +268,7 @@ body[data-interface-theme="modern"] .editorial-note summary {
   font-weight: 500;
 }
 
-body[data-interface-theme="modern"] .editorial-note .arco-textarea-wrapper {
+body[data-interface-theme="modern"] .editorial-note .arco-textarea {
   border: 1px solid var(--modern-line);
   border-radius: 7px;
   background: var(--modern-paper);
@@ -332,4 +360,322 @@ body[data-interface-theme="modern"] .home-brand .avatar .arco-icon {
 
 body[data-interface-theme="modern"] .search-icon-trigger {
   display: none;
+}
+
+/* Raised surfaces remain distinct from the reading canvas in both color modes. */
+body[data-interface-theme="modern"] :is(.arco-modal-mask, .arco-drawer-mask) {
+  background: var(--modern-mask);
+  backdrop-filter: blur(3px);
+}
+
+body[data-interface-theme="modern"] :is(.arco-modal, .arco-drawer-inner) {
+  border: 1px solid var(--modern-overlay-line);
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-dialog-shadow);
+}
+
+body[data-interface-theme="modern"] .arco-modal {
+  border-radius: 16px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-header {
+  height: 64px;
+  margin: 0;
+  border-bottom: 1px solid var(--modern-line);
+  padding: 0 24px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-title {
+  color: var(--modern-ink);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: start;
+  letter-spacing: -0.4px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-footer {
+  border-top: 1px solid var(--modern-line);
+  padding: 16px 24px;
+}
+
+body[data-interface-theme="modern"] .arco-modal-close-icon:has(.accessible-modal-close-button) {
+  top: 10px;
+  right: 10px;
+}
+
+body[data-interface-theme="modern"] .accessible-modal-close-button {
+  border-radius: 10px;
+  color: var(--modern-muted);
+}
+
+body[data-interface-theme="modern"]
+  :is(.arco-dropdown-menu, .arco-select-popup, .arco-picker-container, .arco-popover-content) {
+  border: 1px solid var(--modern-overlay-line);
+  border-radius: 10px;
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-popup-shadow);
+}
+
+body[data-interface-theme="modern"] .mobile-action-menu {
+  border: 1px solid var(--modern-overlay-line);
+  border-radius: 12px;
+  padding: 6px;
+  background: var(--modern-elevated);
+  box-shadow: var(--modern-popup-shadow);
+}
+
+body[data-interface-theme="modern"]
+  .mobile-action-menu
+  :is(.arco-menu-item, .arco-menu-pop-header) {
+  border-radius: 7px;
+  color: var(--modern-ink);
+  background: transparent;
+}
+
+body[data-interface-theme="modern"]
+  .mobile-action-menu
+  :is(.arco-menu-item, .arco-menu-pop-header):hover {
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"] .arco-select-option-selected {
+  color: var(--modern-accent-text);
+  background: var(--color-primary-light-1);
+  font-weight: 600;
+}
+
+body[data-interface-theme="modern"] .settings-modal {
+  width: 760px;
+  max-width: calc(100vw - 32px);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-modal-content {
+  padding: 0 24px 24px;
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-modal-content::before {
+  content: none;
+}
+
+body[data-interface-theme="modern"] .settings-modal .settings-tabs-scroll {
+  max-height: calc(90dvh - 90px);
+  margin-right: -24px;
+  padding-right: 24px;
+}
+
+body[data-interface-theme="modern"] .settings-modal .custom-tabs > .arco-tabs-header-nav {
+  padding-top: 14px;
+  background: var(--modern-elevated);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title {
+  margin: 0 4px 12px 0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--modern-muted);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title:hover {
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title-active {
+  color: var(--modern-accent-text);
+  background: var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .settings-modal [data-settings-tab-key] {
+  flex-direction: row !important;
+  gap: 7px;
+}
+
+body[data-interface-theme="modern"] .settings-modal [data-settings-tab-key] > .arco-icon {
+  font-size: 17px !important;
+}
+
+body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-ink {
+  display: none;
+}
+
+body[data-interface-theme="modern"] .setting-section-title.arco-typography {
+  margin-bottom: 20px !important;
+  color: var(--modern-muted) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.09em;
+}
+
+body[data-interface-theme="modern"] .setting-row-header h6.arco-typography {
+  margin-bottom: 6px;
+  color: var(--modern-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body[data-interface-theme="modern"] .setting-row-header .arco-typography-secondary {
+  color: var(--modern-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Keep validation, disabled states and primary buttons under Arco's control. */
+:where(body[data-interface-theme="modern"])
+  :is(.arco-input, .arco-input-inner-wrapper, .arco-textarea, .arco-select-view, .arco-picker) {
+  border-color: var(--modern-control-line);
+  border-radius: 8px;
+  background-color: var(--modern-control);
+}
+
+body[data-interface-theme="modern"]
+  :is(
+    .arco-input,
+    .arco-input-inner-wrapper,
+    .arco-textarea,
+    .arco-select-view,
+    .arco-picker
+  ):focus-within {
+  border-color: rgb(var(--primary-6));
+  box-shadow: 0 0 0 3px var(--color-primary-light-1);
+}
+
+body[data-interface-theme="modern"] .arco-input-inner-wrapper .arco-input {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-interface-theme="modern"] .arco-btn-secondary:not(.arco-btn-disabled) {
+  border-color: var(--modern-control-line);
+  border-radius: 8px;
+  color: var(--modern-ink);
+  background: var(--modern-control);
+}
+
+body[data-interface-theme="modern"] .arco-btn-secondary:not(.arco-btn-disabled):hover {
+  border-color: var(--modern-overlay-line);
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"]
+  :is(.action-buttons, .search-and-sort-bar, .entry-panel)
+  .arco-btn-secondary:not(.arco-btn-disabled, .modern-search-button) {
+  border-color: transparent;
+  color: var(--modern-muted);
+  background: transparent;
+}
+
+body[data-interface-theme="modern"]
+  :is(.action-buttons, .search-and-sort-bar, .entry-panel)
+  .arco-btn-secondary:not(.arco-btn-disabled, .modern-search-button):hover {
+  color: var(--modern-ink);
+  background: var(--modern-hover);
+}
+
+body[data-interface-theme="modern"]
+  :is(button, [role="tab"], [role="menuitem"], summary):focus-visible {
+  outline: 2px solid rgb(var(--primary-6));
+  outline-offset: 3px;
+}
+
+body[data-interface-theme="modern"] .arco-radio-group-type-button {
+  border: 1px solid var(--modern-line);
+  border-radius: 9px;
+  background: var(--modern-rail);
+}
+
+body[data-interface-theme="modern"] .arco-radio-button-checked {
+  border-radius: 6px;
+  background: var(--modern-elevated);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+
+body[data-interface-theme="modern"] .list-entry-wrapper {
+  border-inline-start: 3px solid transparent;
+  border-radius: 0;
+  padding: 12px 16px 12px 22px;
+}
+
+body[data-interface-theme="modern"] .list-entry-wrapper::before {
+  left: 8px;
+}
+
+body[data-interface-theme="modern"] .grid-card-wrapper {
+  border-radius: 12px;
+  background: var(--modern-paper);
+}
+
+body[data-interface-theme="modern"] .grid-card-copy {
+  padding: 16px;
+}
+
+body[data-interface-theme="modern"] .grid-card-wrapper.selected {
+  border-color: rgb(var(--primary-6));
+}
+
+body[data-interface-theme="modern"] .editorial-quick-actions span[aria-live] {
+  text-align: start;
+}
+
+@media screen and (max-width: 768px) {
+  body[data-interface-theme="modern"] .settings-modal {
+    max-width: none;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal > [data-focus-lock-disabled] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-modal-header {
+    flex: 0 0 60px;
+    padding-inline: 16px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-modal-content {
+    flex: 1 1 auto;
+    height: auto;
+    padding: 0 16px 16px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .settings-tabs-scroll {
+    max-height: none;
+    margin-right: -16px;
+    padding-right: 16px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-nav {
+    padding-right: 0;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal .arco-tabs-header-title {
+    padding: 12px;
+  }
+
+  body[data-interface-theme="modern"] .settings-modal [data-settings-tab-key] {
+    flex-direction: column !important;
+    gap: 4px;
+  }
+}
+
+body[data-interface-theme="modern"] .sidebar-container .arco-menu-selected,
+body[data-interface-theme="modern"] .arco-radio-button-checked {
+  color: var(--modern-accent-text);
+}
+
+body[data-interface-theme="modern"] .setting-row-header .arco-typography {
+  word-break: normal;
+}
+
+:where(body[data-interface-theme="modern"])
+  .arco-select:where(:not(.arco-select-disabled, .arco-select-error, .arco-select-warning))
+  .arco-select-view {
+  border-color: var(--modern-control-line);
+}
+
+:where(body[data-interface-theme="modern"])
+  .arco-select-focused:where(:not(.arco-select-disabled, .arco-select-error, .arco-select-warning))
+  .arco-select-view {
+  border-color: rgb(var(--primary-6));
+  box-shadow: 0 0 0 3px var(--color-primary-light-1);
 }
