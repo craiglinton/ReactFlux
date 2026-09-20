@@ -191,6 +191,8 @@ Modern adds quieter light/dark surfaces, compact text-focused article rows,
 clearer selected items, a visible Search control, and a grouped editorial panel.
 Settings, dialogs, menus, and form controls use distinct raised surfaces with
 consistent borders, focus states, and mobile spacing in both light and dark mode.
+Headlines, metadata, editorial controls and article text share one reading width;
+list text uses consistent gutters, and tooltips use the Modern surface palette.
 Cover display and title alignment are remembered separately for each theme;
 Modern starts with no covers and left-aligned titles. Other appearance choices,
 feed groups, keyboard controls, read/star states, and editorial saves keep their
